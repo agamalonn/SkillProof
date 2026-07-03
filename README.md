@@ -1,16 +1,58 @@
-# React + Vite
+# SkillProof
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+SkillProof is a full-stack prototype for a verified work-experience platform. Junior developers create an account, choose practical GitHub missions, submit pull request proof, and track submissions in a professional portfolio-style workspace.
 
-Currently, two official plugins are available:
+## What is included
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- English production-style React interface
+- Real account creation and sign-in through a local API server
+- HttpOnly cookie sessions
+- Password hashing with Node crypto `scrypt`
+- Persistent local JSON storage ignored by Git
+- Mission catalog with practical GitHub-oriented tasks
+- Pull request submission tracking
+- Production build served by the Node API server
 
-## React Compiler
+## Run locally
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+```bash
+npm install
+npm run dev:full
+```
 
-## Expanding the ESLint configuration
+Open:
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+```text
+http://127.0.0.1:5175/
+```
+
+The API runs on:
+
+```text
+http://127.0.0.1:8787/
+```
+
+## Production-style run
+
+```bash
+npm run build
+npm start
+```
+
+`npm start` serves the built client from `dist` and exposes the API under `/api`.
+
+For a deployed Node environment, set `HOST=0.0.0.0` and `PORT` to the platform-provided port.
+
+## Data
+
+Local accounts, sessions, and submissions are stored in:
+
+```text
+data/skillproof-db.json
+```
+
+The `data` directory is intentionally ignored by Git.
+
+## Auth note
+
+This project now has a working server-side account system. For a public internet deployment, connect the same UI to a managed auth provider such as Supabase, Auth0, Clerk, or Firebase, or deploy this API behind HTTPS with a durable database.
